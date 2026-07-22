@@ -10,5 +10,5 @@ ethercat_devices:
   - type: Rm
     name: Gimbal
     configuration_file: device_configurations/series_legged2_gimbal.yaml
-    ethercat_bus: enp114s0
+    ethercat_bus: enp131s0
     ethercat_address: 1
