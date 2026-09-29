@@ -141,7 +141,7 @@ rm_manual:
         - ""
       services_name:
         - ""
-  gimbal_calibration:
+  gimbal_calibration: []
   shooter_calibration:
     - start_controllers:
         - controllers/trigger_calibration_controller
