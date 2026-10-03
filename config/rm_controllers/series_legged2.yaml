@@ -120,7 +120,7 @@ controllers:
   chassis_controller:
     normal_reference:
       position_release_tau: 0.20 # Velocity/braking: release the previous position error, seconds.
-      hold_capture_speed: 0.10 # Capture a fixed S reference after source/ramp/Vref all reach zero, m/s.
+      hold_capture_speed: 0.40 # Capture a fixed S reference after source/ramp/Vref all reach zero, m/s.
       length_tau: 0.20 # Retained for compatibility; second-order length shaping is inactive.
     velocity_estimator:
       velocity_process_density: 0.02 # Velocity diffusion q_v, m^2/s^3; Qvv += q_v*dt.
@@ -189,7 +189,7 @@ controllers:
 
     # X10: s,v,yaw,yaw_rate,theta_L,dtheta_L,theta_R,dtheta_R,+pitch,pitch_rate.
     # U4: Tw_L,Tw_R,Tp_L,Tp_R (Nm). setupLQR() generates the complete table from these weights.
-    q: [120.0, 225.0, 320.0, 32.0, 450.0, 12.0, 450.0, 12.0, 90000.0, 30.0] # V2 C2; regenerate the full K table.
+    q: [6800.0, 90.0, 5280.0, 512.0, 90000.0, 1112.0, 90000.0, 1112.0, 90000.0, 30.0] # V2 C2; regenerate the full K table.
     r: [400, 400, 7.5, 7.5]
 
     # Current series_legged Gazebo development source. This is not hardware calibration.
@@ -203,7 +203,7 @@ controllers:
     lqr_model:
       gravity: 9.8
       body:
-        mass: 17.137
+        mass: 17
         pitch_inertia: 0.38
         com_distance: 0.0182
         com_angle: -0.219
