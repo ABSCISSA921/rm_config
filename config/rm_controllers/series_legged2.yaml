@@ -158,8 +158,8 @@ controllers:
     off_ground_force: 90.0
     down5cmStairPitchThreshold: 0.1
     down5cmStairThetaThreshold: 0.2
-    pid_left_leg: { p: 1000.0, i: 100., d: 60.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
-    pid_right_leg: { p: 1000.0, i: 100., d: 60.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
+    pid_left_leg: { p: 700.0, i: 80., d: 55.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
+    pid_right_leg: { p: 700.0, i: 80., d: 55.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
     pid_roll: { p: 1500.0, i: 0, d: 35., i_clamp_max: 30.0, i_clamp_min: -30.0, antiwindup: true, publish_state: true }
     pid_left_leg_theta: { p: 45.0, i: 0., d: 5., i_clamp_max: 2.0, i_clamp_min: -2.0, antiwindup: true, publish_state: true }
     pid_right_leg_theta: { p: 45.0, i: 0., d: 5., i_clamp_max: 2.0, i_clamp_min: -2.0, antiwindup: true, publish_state: true }
@@ -188,34 +188,30 @@ controllers:
     l2: 0.248
 
     # X10: s,v,yaw,yaw_rate,theta_L,dtheta_L,theta_R,dtheta_R,+pitch,pitch_rate.
-    # U4: Tw_L,Tw_R,Tp_L,Tp_R (Nm). setupLQR() generates the complete table from these weights.
-    q: [6800.0, 90.0, 5280.0, 512.0, 90000.0, 1112.0, 90000.0, 1112.0, 90000.0, 30.0] # V2 C2; regenerate the full K table.
+    # U4: Tw_L,Tw_R,Tp_L,Tp_R (Nm).
+    q: [6800.0, 90.0, 5280.0, 512.0, 55000.0, 1112.0,55000.0, 1112.0, 110000.0, 30.0]
     r: [400, 400, 7.5, 7.5]
 
-    # Current series_legged Gazebo development source. This is not hardware calibration.
     lqr10:
       length_domain: [0.06, 0.40]
-      # period_range was removed by request; do not reintroduce it or its runtime/design gates.
       gate:
         max_angle: 0.2
-
-    # Current series_legged Gazebo nominal equivalent model; not hardware calibration/certification.
+      
     lqr_model:
       gravity: 9.8
       body:
         mass: 17
         pitch_inertia: 0.38
-        com_distance: 0.0182
-        com_angle: -0.219
+        com_distance: 0.0082
+        com_angle: +0.219
+        # com_distance: 0.05
+        # com_angle: +0.31
       yaw_inertia: 0.5282
       wheel:
         mass: 0.80357
         spin_inertia: 0.00336
-      # Shared mechanical parameters; each side is evaluated at its own measured VMC length.
       leg:
         mass: 0.8378
-        # Rebased from [0.08, 0.36] to [0.06, 0.40]: t_old = (17*t_new + 1)/14.
-        # Rounded to 8 decimal places after rebasing; the added range is extrapolation.
         angle_offset_coefficients:
         - 0.00781088
         - -0.00731481
@@ -253,7 +249,6 @@ controllers:
         - -0.00005001
         - 0.00000000
 
-    # Effective mass retained only by the original axial turning compensation (kg).
     M: 12
     # 轮子半径
     wheel_radius: 0.06
@@ -280,6 +275,6 @@ controllers:
     upstair_exit_theta_threshold: 1.0
     upstair_exit_length_threshold: 0.24
     # upstair_des_theta: M_PI_2 - 0.6
-    arrive_time_threshold: 1.5
+    arrive_time_threshold: 0.5
     #    jump_up_force: 225
     #    off_ground_force: 150
