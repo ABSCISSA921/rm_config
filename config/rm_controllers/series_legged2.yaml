@@ -119,8 +119,6 @@ controllers:
 
   chassis_controller:
     normal_reference:
-      position_release_tau: 0.20 # Velocity/braking: release the previous position error, seconds.
-      hold_capture_speed: 0.40 # Capture a fixed S reference after source/ramp/Vref all reach zero, m/s.
       length_tau: 0.20 # Retained for compatibility; second-order length shaping is inactive.
     velocity_estimator:
       velocity_process_density: 0.02 # Velocity diffusion q_v, m^2/s^3; Qvv += q_v*dt.
@@ -194,8 +192,6 @@ controllers:
 
     lqr10:
       length_domain: [0.06, 0.40]
-      gate:
-        max_angle: 0.2
       
     lqr_model:
       gravity: 9.8
@@ -212,42 +208,6 @@ controllers:
         spin_inertia: 0.00336
       leg:
         mass: 0.8378
-        angle_offset_coefficients:
-        - 0.00781088
-        - -0.00731481
-        - 0.00274022
-        - -0.00087926
-        - 0.00038916
-        - -0.00007942
-        - 0.00005001
-        - 0.00000000
-        lb_coefficients:
-        - 0.08640767
-        - 0.05100648
-        - 0.01027296
-        - -0.00683328
-        - 0.00347113
-        - -0.00170093
-        - 0.00053854
-        - -0.00019618
-        lw_coefficients:
-        - 0.17427211
-        - 0.07783741
-        - 0.00898093
-        - -0.00347784
-        - 0.00124102
-        - -0.00052677
-        - 0.00014618
-        - -0.00006539
-        inertia_coefficients:
-        - 0.01540610
-        - -0.00059323
-        - -0.00094531
-        - 0.00026475
-        - -0.00020695
-        - 0.00004118
-        - -0.00005001
-        - 0.00000000
 
     M: 12
     # 轮子半径
