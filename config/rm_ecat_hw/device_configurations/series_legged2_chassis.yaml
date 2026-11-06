@@ -1,29 +1,36 @@
 can_motors:
   - can_id: 1
-    can_bus: 0
+    can_bus: 1
     name: "left_hip_motor"
     type: "DM8009"
     TMAX: 54
     PMAX: 12.566
     VMAX: 45
   - can_id: 2
-    can_bus: 0
+    can_bus: 1
     name: "left_knee_motor"
     type: "DM8009"
     TMAX: 54
     PMAX: 12.566
     VMAX: 45
   - can_id: 1
-    can_bus: 1
+    can_bus: 0
     name: "right_hip_motor"
     type: "DM8009"
     TMAX: 54
     PMAX: 12.566
     VMAX: 45
   - can_id: 2
-    can_bus: 1
+    can_bus: 0
     name: "right_knee_motor"
     type: "DM8009"
     TMAX: 54
+    PMAX: 12.566
+    VMAX: 45
+  - can_id: 3
+    can_bus: 0
+    name: "pitch_joint_motor"
+    type: "DM4310"
+    TMAX: 18
     PMAX: 12.566
     VMAX: 45
