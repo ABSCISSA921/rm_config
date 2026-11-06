@@ -119,7 +119,7 @@ controllers:
 
   chassis_controller:
     normal_reference:
-      length_tau: 0.20 # Retained for compatibility; second-order length shaping is inactive.
+      length_tau: 0.08 # Critically damped nominal-length reference, converted to base height.
     velocity_estimator:
       velocity_process_density: 0.02 # Velocity diffusion q_v, m^2/s^3; Qvv += q_v*dt.
       jerk_density: 10.0 # White jerk spectral density, m^2/s^5.
@@ -173,7 +173,7 @@ controllers:
     spring_s3: 0.20
     spring_alpha_s: 0.2448
     # Physical parameters for the spring system
-    gravity_force: 110
+    gravity_force: 88.3 # Per-side support from series_legged potential-energy derivative, no spring.
     spring_force: 250
     # use in gazebo
     # gravity_force: 87.54
@@ -185,9 +185,10 @@ controllers:
     l1: 0.21
     l2: 0.248
 
-    # X10: s,v,yaw,yaw_rate,theta_L,dtheta_L,theta_R,dtheta_R,+pitch,pitch_rate.
+    # X10 retains wheel-midpoint s/v. Q_s/Q_v below weight base_link outputs through C_B.
+    # Remaining weights regulate yaw, virtual-leg internal modes and body pitch.
     # U4: Tw_L,Tw_R,Tp_L,Tp_R (Nm).
-    q: [6800.0, 90.0, 5280.0, 512.0, 55000.0, 1112.0,55000.0, 1112.0, 210000.0, 30.0]
+    q: [3400.0, 180000.0, 5280.0, 512.0, 55000.0, 1112.0,55000.0, 1112.0, 210000.0, 30.0]
     r: [400, 400, 7.5, 7.5]
 
     lqr10:
