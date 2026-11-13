@@ -14,7 +14,7 @@ rm_manual:
     accel_y:
       - [ 45.0,13.5 ]
     accel_z:
-      - [ 45.0,30.0 ]
+      - [ 45.0,15.0 ]
     safety_power: 70
     capacitor_threshold: 0.25
     charge_power: 40
@@ -33,7 +33,7 @@ rm_manual:
       topic: "/leg_cmd"
       unstick_topic: "/controllers/chassis_controller/unstick/two_leg_unstick"
       short_leg_length: 0.15
-      mid_leg_length: 0.21
+      mid_leg_length: 0.24
       high_leg_length: 0.348
       retraction_leg_length: 0.12
       jump_up_range_threshold: 0.9
@@ -76,19 +76,19 @@ rm_manual:
       - [ 60.0,2.35 ]
       - [ 80.0,2.4 ]
     max_angular_z:
-      - [ 60.0,9.5 ]
+      - [ 60.0,10.0 ]
       - [ 80.0,10.0 ]
-      - [ 100.0,10.5 ]
+      - [ 100.0,10.0 ]
 
     gyro_move_reduction: 0.4
     gyro_rotate_reduction: 0.7
   gimbal:
     topic: "/controllers/gimbal_controller/command"
-    max_yaw_vel: 6.28
+    max_yaw_vel: 5.28
     max_pitch_vel: 5.0
     time_constant_rc: 0.02
     time_constant_pc: 0.08
-    gimbal_scale: 10.0
+    gimbal_scale: 7.0 # Scale the gimbal command
     track_timeout: 0.5
     finish_turning_threshold: 2.9
     target_cost_function:
@@ -151,9 +151,9 @@ rm_manual:
       - controllers/orientation_controller
       - controllers/chassis_controller
       - controllers/gimbal_controller
-      # - controllers/shooter_controller
+      - controllers/shooter_controller
     calibration_controllers:
-      # - controllers/trigger_calibration_controller
+      - controllers/trigger_calibration_controller
 
   chassis_calibration:
     - start_controllers:

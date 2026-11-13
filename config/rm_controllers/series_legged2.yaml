@@ -173,7 +173,7 @@ controllers:
     spring_s3: 0.20
     spring_alpha_s: 0.2448
     # Physical parameters for the spring system
-    gravity_force: 110
+    gravity_force: 100
     spring_force: 250
     # use in gazebo
     # gravity_force: 87.54
@@ -187,7 +187,7 @@ controllers:
 
     # X10: s,v,yaw,yaw_rate,theta_L,dtheta_L,theta_R,dtheta_R,+pitch,pitch_rate.
     # U4: Tw_L,Tw_R,Tp_L,Tp_R (Nm).
-    q: [6800.0, 90.0, 5280.0, 512.0, 55000.0, 1112.0,55000.0, 1112.0, 210000.0, 30.0]
+    q: [6800.0, 90.0, 5128.0, 2120.0, 45000.0, 1112.0,45000.0, 1112.0, 210000.0, 30.0]
     r: [400, 400, 7.5, 7.5]
 
     lqr10:
@@ -288,7 +288,7 @@ controllers:
     upstair_des_theta: 1.1
     #    upstair_des_length: 0.34
     upstair_des_length: 0.14
-    upstair_exit_theta_threshold: 1.0
+    upstair_exit_theta_threshold: 0.9
     upstair_exit_length_threshold: 0.24
     # upstair_des_theta: M_PI_2 - 0.6
     arrive_time_threshold: 0.5
