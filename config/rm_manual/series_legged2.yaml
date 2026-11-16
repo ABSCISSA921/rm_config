@@ -14,7 +14,7 @@ rm_manual:
     accel_y:
       - [ 45.0,13.5 ]
     accel_z:
-      - [ 45.0,30.0 ]
+      - [ 45.0,15.0 ]
     safety_power: 70
     capacitor_threshold: 0.25
     charge_power: 40
@@ -76,9 +76,9 @@ rm_manual:
       - [ 60.0,2.35 ]
       - [ 80.0,2.4 ]
     max_angular_z:
-      - [ 60.0,9.5 ]
+      - [ 60.0,10.0 ]
       - [ 80.0,10.0 ]
-      - [ 100.0,10.5 ]
+      - [ 100.0,10.0 ]
 
     gyro_move_reduction: 0.4
     gyro_rotate_reduction: 0.7

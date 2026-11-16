@@ -118,8 +118,23 @@ controllers:
     freq_threshold: 15.0
 
   chassis_controller:
+    normal_feedback:
+      swing_damping: 2.5 # Local VMC swing-port damping, N m s/rad.
+      raw_spin: # Common per-side torque harmonics of the relative yaw_joint angle; measured RAW +10 rad/s.
+        wheel_cos: 0.075365
+        wheel_sin: -0.033754
+        swing_cos: -0.114516
+        swing_sin: -0.015917
+        nominal_yaw_rate: 10.0
+        blend_tau: 0.2
     normal_reference:
+      stop_prediction_time: 7.5 # Identified near-stationary settling time, s; one correction after translation.
+      stop_prediction_delay: 2.0 # Let the faster braking modes settle after the effective speed reference reaches zero.
+      stop_speed_band: 0.01 # Current KF base-point speed, m/s.
+      stop_yaw_rate_band: 0.1 # Near-straight FOLLOW stopping only, rad/s.
       length_tau: 0.08 # Critically damped nominal-length reference, converted to base height.
+      raw_position_scale: 0.25 # RAW world-position correction; keep base-point geometry and velocity feedback.
+      raw_position_tau: 0.2 # Smooth engagement/disengagement of the RAW position task.
     velocity_estimator:
       velocity_process_density: 0.02 # Velocity diffusion q_v, m^2/s^3; Qvv += q_v*dt.
       jerk_density: 10.0 # White jerk spectral density, m^2/s^5.
@@ -158,7 +173,7 @@ controllers:
     down5cmStairThetaThreshold: 0.2
     pid_left_leg: { p: 700.0, i: 80., d: 55.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
     pid_right_leg: { p: 700.0, i: 80., d: 55.0, i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
-    pid_roll: { p: 1500.0, i: 0, d: 35., i_clamp_max: 30.0, i_clamp_min: -30.0, antiwindup: true, publish_state: true }
+    pid_roll: { p: 1500.0, i: 0, d: 55., i_clamp_max: 30.0, i_clamp_min: -30.0, antiwindup: true, publish_state: true }
     pid_left_leg_theta: { p: 45.0, i: 0., d: 5., i_clamp_max: 2.0, i_clamp_min: -2.0, antiwindup: true, publish_state: true }
     pid_right_leg_theta: { p: 45.0, i: 0., d: 5., i_clamp_max: 2.0, i_clamp_min: -2.0, antiwindup: true, publish_state: true }
     pid_left_leg_theta_vel: { p: 6.0, i: 3.0, d: 0., i_clamp_max: 10.0, i_clamp_min: -10.0, antiwindup: true, publish_state: true }
@@ -173,7 +188,7 @@ controllers:
     spring_s3: 0.20
     spring_alpha_s: 0.2448
     # Physical parameters for the spring system
-    gravity_force: 88.3 # Per-side support from series_legged potential-energy derivative, no spring.
+    gravity_force: 138.0 # Per-side vertical support for the current CAD model; physical spring is compensated separately.
     spring_force: 250
     # use in gazebo
     # gravity_force: 87.54
