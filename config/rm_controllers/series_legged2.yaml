@@ -118,6 +118,21 @@ controllers:
     freq_threshold: 15.0
 
   chassis_controller:
+    support_mpc:
+      enabled: true
+      mass: 27.6 # Local vertical VMC-port model, independently checked in fixed-state MuJoCo probes.
+      roll_inertia: 1.05 # Design inertia: reduce roll rate feedback; not a calibrated whole-body inertia.
+      prediction_dt: 0.01 # 20 prediction steps; solve on each original 1 ms controller update.
+      height_weight: 1620000.0
+      height_rate_weight: 30000.0
+      roll_weight: 1600000.0
+      roll_rate_weight: 2000.0
+      force_weight: 1.0
+      common_force_change_weight: 20.0 # Sum force: avoid chasing fast support-geometry velocity.
+      difference_force_change_weight: 0.1 # Differential force: retain the roll response.
+      force_min: 0.0
+      force_max: 300.0
+      joint_torque_max: 40.0
     normal_feedback:
       swing_damping: 2.5 # Local VMC swing-port damping, N m s/rad.
       raw_spin: # Common per-side torque harmonics of the relative yaw_joint angle; measured RAW +10 rad/s.
