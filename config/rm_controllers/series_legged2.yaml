@@ -128,18 +128,26 @@ controllers:
       roll_weight: 1600000.0
       roll_rate_weight: 2000.0
       force_weight: 1.0
-      common_force_change_weight: 20.0 # Sum force: avoid chasing fast support-geometry velocity.
+      common_force_change_weight: 20.0 # Common-force change cost retained from MPC5.
       difference_force_change_weight: 0.1 # Differential force: retain the roll response.
       force_min: 0.0
       force_max: 300.0
       joint_torque_max: 40.0
+      height_observer:
+        enabled: true
+        acceleration_density: 0.000001 # Effective continuous acceleration noise density, m^2/s^3.
+        bias_density: 0.00000004 # Vertical acceleration-bias random walk, m^2/s^5.
+        geometry_stddev: 0.001 # Kinematic position uncertainty; does not identify a constant geometric offset.
+        initial_velocity_stddev: 0.2
+        initial_bias_stddev: 0.1
+        acceleration_lagged: true # MuJoCo 3.3.5: control reads previous-step accel, current attitude/gyro.
     normal_feedback:
       swing_damping: 2.5 # Local VMC swing-port damping, N m s/rad.
       raw_spin: # Common per-side torque harmonics of the relative yaw_joint angle; measured RAW +10 rad/s.
-        wheel_cos: 0.075365
-        wheel_sin: -0.033754
-        swing_cos: -0.114516
-        swing_sin: -0.015917
+        wheel_cos: 0.1119666421
+        wheel_sin: -0.0471181907
+        swing_cos: -0.2778682920
+        swing_sin: -0.5337015033
         nominal_yaw_rate: 10.0
         blend_tau: 0.2
     normal_reference:

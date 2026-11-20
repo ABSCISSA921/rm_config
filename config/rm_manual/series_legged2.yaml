@@ -10,7 +10,7 @@ rm_manual:
   chassis:
     topic: "/cmd_chassis"
     accel_x:
-      - [ 45.0,7.0 ]
+      - [ 45.0,2.0 ]
     accel_y:
       - [ 45.0,13.5 ]
     accel_z:
