@@ -84,7 +84,7 @@ rm_manual:
     gyro_rotate_reduction: 0.7
   gimbal:
     topic: "/controllers/gimbal_controller/command"
-    max_yaw_vel: 5.28
+    max_yaw_vel: 3.28
     max_pitch_vel: 5.0
     time_constant_rc: 0.02
     time_constant_pc: 0.08
@@ -151,9 +151,9 @@ rm_manual:
       - controllers/orientation_controller
       - controllers/chassis_controller
       - controllers/gimbal_controller
-      - controllers/shooter_controller
+      # - controllers/shooter_controller
     calibration_controllers:
-      - controllers/trigger_calibration_controller
+      # - controllers/trigger_calibration_controller
 
   chassis_calibration:
     - start_controllers:
